@@ -3,8 +3,8 @@
 #include "camera_pins.h"
 
 // WiFi credentials
-char ssid[] = "ADB-ED9103";
-char password[] = "h5atqw49msnzkc2p";
+char ssid[] = "_";
+char password[] = "_";
 
 void startCameraServer();
 void setupLedFlash();
