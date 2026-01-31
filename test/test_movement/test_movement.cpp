@@ -1,6 +1,8 @@
 #include <unity.h>
 #include <MovementModule.hpp>
 
+// To run the test "platformio test --environment esp32-s3-n16r8"
+
 MovementModule* movement;
 
 void setUp(void) {
