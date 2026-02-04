@@ -63,6 +63,10 @@ void setup() {
   WiFi.begin(SSID, PWD);
   while (WiFi.status() != WL_CONNECTED) { delay(500); }
 
+  // Modules Init
+  movement = new MovementModule();
+  movement->init();
+
   // Connect to Micro-ROS Agent
   set_microros_wifi_transports(SSID, PWD, AGENT_IP, AGENT_PORT);
   
@@ -72,11 +76,11 @@ void setup() {
 
   // Init Subscriber (Cmd Vel)
   rclc_subscription_init_default(
-    &twist_subscriber, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist), "/cmd_vel");
+    &twist_subscriber, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist), "/movement_out");
 
   // Init Publisher (Audio)
   rclc_publisher_init_default(
-    &audio_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16MultiArray), "/robot/mic_data");
+    &audio_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16MultiArray), "/robot/sound_in");
 
   // Init Executor
   rclc_executor_init(&executor, &support.context, 1, &allocator);
