@@ -18,88 +18,73 @@ bool MovementModule::init() {
     return true;
 }
 
-void MovementModule::moveForward(int speed) {
+void MovementModule::topLeftWheelForward(int speed) {
     digitalWrite(WHEEL_TOP_LEFT_PIN_1, speed);
     digitalWrite(WHEEL_TOP_LEFT_PIN_2, LOW);
+}
 
+void MovementModule::topLeftWheelBackward(int speed) {
+    digitalWrite(WHEEL_TOP_LEFT_PIN_1, LOW);
+    digitalWrite(WHEEL_TOP_LEFT_PIN_2, speed);
+}
+
+void MovementModule::topRightWheelForward(int speed) {
     digitalWrite(WHEEL_TOP_RIGHT_PIN_1, speed);
     digitalWrite(WHEEL_TOP_RIGHT_PIN_2, LOW);
+}
 
+void MovementModule::topRightWheelBackward(int speed) {
+    digitalWrite(WHEEL_TOP_RIGHT_PIN_1, LOW);
+    digitalWrite(WHEEL_TOP_RIGHT_PIN_2, speed);
+}
+
+void MovementModule::bottomLeftWheelForward(int speed) {
+    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_1, speed);
+    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_2, LOW);
+}
+
+void MovementModule::bottomLeftWheelBackward(int speed) {
     digitalWrite(WHEEL_BOTTOM_LEFT_PIN_1, LOW);
     digitalWrite(WHEEL_BOTTOM_LEFT_PIN_2, speed);
+}
 
+void MovementModule::bottomRightWheelForward(int speed) {
+    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_1, speed);
+    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_2, LOW);
+}
+
+void MovementModule::bottomRightWheelBackward(int speed) {
     digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_1, LOW);
     digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_2, speed);
+}
+
+
+void MovementModule::moveForward(int speed) {
+    topLeftWheelForward(speed);
+    topRightWheelForward(speed);
+    bottomLeftWheelForward(speed);
+    bottomRightWheelForward(speed);
 }
 
 void MovementModule::moveBackward(int speed) {
-    digitalWrite(WHEEL_TOP_LEFT_PIN_1, LOW);
-    digitalWrite(WHEEL_TOP_LEFT_PIN_2, speed);
-
-    digitalWrite(WHEEL_TOP_RIGHT_PIN_1, LOW);
-    digitalWrite(WHEEL_TOP_RIGHT_PIN_2, speed);
-
-    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_1, speed);
-    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_2, LOW);
-
-    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_1, speed);
-    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_2, LOW);
+    topLeftWheelBackward(speed);
+    topRightWheelBackward(speed);
+    bottomLeftWheelBackward(speed);
+    bottomRightWheelBackward(speed);
 }
 
-void MovementModule::turnLeftForward(int speed) {
-    digitalWrite(WHEEL_TOP_LEFT_PIN_1, LOW);
-    digitalWrite(WHEEL_TOP_LEFT_PIN_2, LOW);
-
-    digitalWrite(WHEEL_TOP_RIGHT_PIN_1, speed);
-    digitalWrite(WHEEL_TOP_RIGHT_PIN_2, LOW);
-
-    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_1, LOW);
-    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_2, speed);
-
-    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_1, LOW);
-    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_2, speed);
+void MovementModule::turnLeft(int speed) {
+    topLeftWheelBackward(speed);
+    topRightWheelForward(speed);
+    bottomLeftWheelBackward(speed);
+    bottomRightWheelForward(speed);
 }
 
-void MovementModule::turnRightForward(int speed) {
-    digitalWrite(WHEEL_TOP_LEFT_PIN_1, speed);
-    digitalWrite(WHEEL_TOP_LEFT_PIN_2, LOW);
-
-    digitalWrite(WHEEL_TOP_RIGHT_PIN_1, LOW);
-    digitalWrite(WHEEL_TOP_RIGHT_PIN_2, LOW);
-
-    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_1, LOW);
-    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_2, speed);
-
-    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_1, LOW);
-    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_2, speed);
-}
-
-void MovementModule::turnLeftBackward(int speed) {
-    digitalWrite(WHEEL_TOP_LEFT_PIN_1, LOW);
-    digitalWrite(WHEEL_TOP_LEFT_PIN_2, LOW);
-
-    digitalWrite(WHEEL_TOP_RIGHT_PIN_1, LOW);
-    digitalWrite(WHEEL_TOP_RIGHT_PIN_2, speed);
-
-    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_1, speed);
-    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_2, LOW);
-
-    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_1, LOW);
-    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_2, speed);
-}
-
-void MovementModule::turnRightBackward(int speed) {
-    digitalWrite(WHEEL_TOP_LEFT_PIN_1, LOW);
-    digitalWrite(WHEEL_TOP_LEFT_PIN_2, speed);
-
-    digitalWrite(WHEEL_TOP_RIGHT_PIN_1, LOW);
-    digitalWrite(WHEEL_TOP_RIGHT_PIN_2, LOW);
-
-    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_1, speed);
-    digitalWrite(WHEEL_BOTTOM_LEFT_PIN_2, LOW);
-
-    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_1, speed);
-    digitalWrite(WHEEL_BOTTOM_RIGHT_PIN_2, LOW);
+void MovementModule::turnRight(int speed) {
+    topLeftWheelForward(speed);
+    topRightWheelBackward(speed);
+    bottomLeftWheelForward(speed);
+    bottomRightWheelBackward(speed);
 }
 
 void MovementModule::stop() {
