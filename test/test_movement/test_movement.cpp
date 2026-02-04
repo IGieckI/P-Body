@@ -7,16 +7,6 @@ MovementModule* movement;
 
 void setUp(void) {
     movement = new MovementModule();
-    
-    // Ensure pins are set to output
-    pinMode(WHEEL_TOP_LEFT_PIN_1, OUTPUT);
-    pinMode(WHEEL_TOP_LEFT_PIN_2, OUTPUT);
-    pinMode(WHEEL_TOP_RIGHT_PIN_1, OUTPUT);
-    pinMode(WHEEL_TOP_RIGHT_PIN_2, OUTPUT);
-    pinMode(WHEEL_BOTTOM_LEFT_PIN_1, OUTPUT);
-    pinMode(WHEEL_BOTTOM_LEFT_PIN_2, OUTPUT);
-    pinMode(WHEEL_BOTTOM_RIGHT_PIN_1, OUTPUT);
-    pinMode(WHEEL_BOTTOM_RIGHT_PIN_2, OUTPUT);
 
     movement->init();
 }
@@ -31,42 +21,28 @@ void tearDown(void) {
 
 void test_move_forward(void) {
     // Move Forward for 2 seconds
-    movement->moveForward(255);
+    movement->moveForward();
     delay(2000);
     movement->stop();
 }
 
 void test_move_backward(void) {
     // Move Backward for 2 seconds
-    movement->moveBackward(255);
+    movement->moveBackward();
     delay(2000);
     movement->stop();
 }
 
-void test_turn_left_forward(void) {
+void test_turn_left(void) {
     // Turn Left Forward for 2 seconds
-    movement->turnLeftForward(255);
+    movement->turnLeft();
     delay(2000);
     movement->stop();
 }
 
-void test_turn_right_forward(void) {
+void test_turn_right(void) {
     // Turn Right Forward for 2 seconds
-    movement->turnRightForward(255);
-    delay(2000);
-    movement->stop();
-}
-
-void test_turn_left_backward(void) {
-    // Turn Left Backward for 2 seconds
-    movement->turnLeftBackward(255);
-    delay(2000);
-    movement->stop();
-}
-
-void test_turn_right_backward(void) {
-    // Turn Right Backward for 2 seconds
-    movement->turnRightBackward(255);
+    movement->turnRight();
     delay(2000);
     movement->stop();
 }
@@ -84,21 +60,13 @@ void setup() {
     RUN_TEST(test_move_backward);
     delay(1000);
 
-    RUN_TEST(test_turn_left_forward);
+    RUN_TEST(test_turn_left);
     delay(1000);
-
-    RUN_TEST(test_turn_left_backward);
-    delay(1000);
-
     
-    RUN_TEST(test_turn_right_forward);
+    RUN_TEST(test_turn_right);
     delay(1000);
 
-    RUN_TEST(test_turn_right_backward);
-    
     UNITY_END();
 }
 
-void loop() {
-    // Nothing to do here
-}
+void loop() { }
